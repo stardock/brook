@@ -49,9 +49,11 @@
   `chmod +x /etc/systemd/system/brook.service`  
   
   运行测试  
-  `systemctl daemon-reload  
+  ```
+  systemctl daemon-reload  
   systemctl start brook  
-  sstemctl status brook`  
+  sstemctl status brook  
+  ```
   
   设置开机自动启动  
   `systemctl enable brook`  
