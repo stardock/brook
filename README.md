@@ -48,13 +48,13 @@
   粘贴完后赋予可执行权限  
   `chmod +x /etc/systemd/system/brook.service`  
   
-  运行测试
-  `systemctl daemon-reload
-  systemctl start brook
-  sstemctl status brook`
+  运行测试  
+  `systemctl daemon-reload  
+  systemctl start brook  
+  sstemctl status brook`  
   
   设置开机自动启动  
   `systemctl enable brook`  
   
-brook -h  #帮助
+brook -h  #帮助  
 
