@@ -52,7 +52,7 @@
   ```
   systemctl daemon-reload  
   systemctl start brook  
-  sstemctl status brook  
+  systemctl status brook  
   ```
   
   设置开机自动启动  
