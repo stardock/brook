@@ -31,18 +31,31 @@
   按`Ctrl+C`退出测试  
   
 # 设置开机自动启动  
-  `vi /etc/systemd/system/brook.service`  
 
-  粘贴以下内容  
+
+  vi /etc/default/brook  
   ```
-  [Unit]  
-  Description = This will run at startup  
-  
-  [Service]  
-  ExecStart = /usr/bin/brook relays -l ":2333 2.2.2.2:6666" -l ":6666 3.3.3.3:6688" -l ":8888 6.6.6.6:7766" > /dev/null 2>&1  
-  
-  [Install]  
-  WantedBy = multi-user.target  
+  PORT=1234
+  RELAY=123.123.123.123:12345
+  ```
+
+  vi /lib/systemd/system/brook.service  
+  ```
+  [Unit]
+  Description=brook
+  After=network.target
+
+  [Service]
+  EnvironmentFile=-/etc/default/brook
+  ExecStart=/usr/bin/brook relays -l ":${PORT} ${RELAY}"  > /dev/null 2>&1
+  ExecReload=/bin/kill -HUP $MAINPID
+  KillMode=process
+  Restart=on-failure
+  RestartPreventExitStatus=255
+  Type=idle
+
+  [Install]
+  WantedBy=multi-user.target
   ```
 
   粘贴完后赋予可执行权限  
